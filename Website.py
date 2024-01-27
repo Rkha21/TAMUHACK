@@ -1,7 +1,9 @@
 # app.py
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 
 def calculate_responsibility(salary, save_amount, purchase_amount):
     remaining_income = salary - save_amount - purchase_amount
@@ -31,4 +33,5 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
+    csrf.init_app(app)
     app.run(debug=True)
