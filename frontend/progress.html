@@ -44,18 +44,21 @@
 
     <h1>Progress</h1>
     <h2>Choose an Avatar</h2>
-    <div class="avatar-item">
-      <img src="avatar1.png">
-      <button onclick="redirectToGoalMap('avatar1')">Select</button>
+    <div class="avatar-container">
+      <div class="avatar-item">
+          <img src="avatar1.png">
+          <button onclick="redirectToGoalMap('avatar1')">Select</button>
+      </div>
+      <div class="avatar-item">
+          <img src="avatar2.png">
+          <button onclick="redirectToGoalMap('avatar2')">Select</button>
+      </div>
+      <div class="avatar-item">
+          <img src="avatar3.png" width="auto" height="400px"> 
+          <button onclick="redirectToGoalMap('avatar3')">Select</button>
+      </div>
   </div>
-  <div class="avatar-item">
-      <img src="avatar2.png">
-      <button onclick="redirectToGoalMap('avatar2')">Select</button>
-  </div>
-  <div class="avatar-item">
-      <img src="avatar3.png">
-      <button onclick="redirectToGoalMap('avatar3')">Select</button>
-  </div>
+  
   
   <script>
       function redirectToGoalMap(avatar) {
