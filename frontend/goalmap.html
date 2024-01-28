@@ -69,7 +69,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Website Name</a>
+            <a class="navbar-brand" href="#">Reveille Reserve</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -131,23 +131,27 @@
       let topA = 800;
       let leftA = 100;
 
-    function increment() {
+      function increment() {
     const saveAmount = parseInt(new URLSearchParams(window.location.search).get('save_amount'));
     const monthInput = parseInt(document.getElementById("monthInput").value);
 
-    if (monthInput < 1/4*saveAmount && monthInput >= 0 ) {
+    if (monthInput < 1/4 * saveAmount && monthInput >= 0) {
         topA = 800;
         leftA = 100;
     }
-    else if (monthInput >= 1/4*saveAmount && monthInput < 2/4*saveAmount) {
+    else if (monthInput >= 1/4 * saveAmount && monthInput < 2/4 * saveAmount) {
         topA = 550;
         leftA = 170;
     }
-    else if (monthInput >= 2/4*saveAmount && monthInput <= 3/4*saveAmount) {
-        topA = 280;
+    else if (monthInput >= 2/4 * saveAmount && monthInput <= 3/4 * saveAmount) {
+        topA = 650;
+        leftA = 570;
+    }
+    else if (monthInput >= 3/4 * saveAmount && monthInput <= saveAmount) {
+        topA = 290;
         leftA = 700;
     }
-    else if (monthInput >= 3/4*saveAmount && monthInput <= saveAmount) {
+    else {
         topA = 450;
         leftA = 900;
     }
@@ -155,6 +159,7 @@
     document.getElementById("selectedAvatar").style.top = topA + "px";
     document.getElementById("selectedAvatar").style.left = leftA + "px";
 }
+
 
     </script>
 
