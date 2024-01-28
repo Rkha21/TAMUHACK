@@ -18,18 +18,3 @@ body {
 #homeName{
     text-align: center;
 }
-
-#caption{
-    margin-top: 35px;
-    margin-bottom: 50px;
-}
-
-#aboutus{
-    margin-top: 5%;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    padding-left: 5%;
-    padding-right: 5%;
-    background-color: #fffffff2;
-}
-
