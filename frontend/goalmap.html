@@ -135,76 +135,62 @@
     <!-- function that increments-->
 
     <script>
-      let topA = 940;
-      let leftA = 360;
-
-      function increment() {
-    const saveAmount = parseInt(new URLSearchParams(window.location.search).get('save_amount'));
-    const monthInput = parseInt(document.getElementById("monthInput").value);
-    let topA, leftA;
-
-    if (monthInput < 1/4 * saveAmount && monthInput >= 0) {
-        topA = 940;
-        leftA = 360;
-    }
-    /* Greece */
-    else if (monthInput >= 1/4 * saveAmount && monthInput < 2/4 * saveAmount) {
-        topA = 670;
-        leftA = 450;
-    }
-    /* Japan */
-    else if (monthInput >= 2/4 * saveAmount && monthInput <= 3/4 * saveAmount) {
-        topA = 800;
-        leftA = 850;
-    }
-    /* Australia */
-    else if (monthInput >= 3/4 * saveAmount && monthInput <= saveAmount) {
-        topA = 400;
-        leftA = 960;
-    }
-    /* France */
-    else if (monthInput > saveAmount) {
-        topA = 600;
-        leftA = 1150;
-    }
-
-    document.getElementById("selectedAvatar").style.top = topA + "px";
-    document.getElementById("selectedAvatar").style.left = leftA + "px";
-}
-
-    </script>
-
-<form id="saveForm">
-  <label for="monthInput">Enter how much you saved this month:</label>
-  <input type="number" id="monthInput" required>
-  <button class="btn btn-primary" type="button" onclick="increment()">Submit</button>
-</form>
-
-    <!-- Display checkpoints -->
-    <ul id="checkpoints"></ul>
-
-    <script>
-      // Function to move the avatar and trigger events
-      function avatarMove(islandNumber) {
-          // Move the avatar to the specified island/city
-
-          // Check if the avatar reached the final goal amount
-          if (islandNumber === 4) {
-              // Show confetti animation
-              const confettiSettings = { target: 'confetti' };
-              const confetti = new ConfettiGenerator(confettiSettings);
-              confetti.render();
-
-              // Display congratulations message
-              document.getElementById("congratulations").style.display = "block";
+        let topA = 940;
+        let leftA = 360;
+        let totalSavings = 0;
+      
+        function increment() {
+          const saveAmount = parseInt(new URLSearchParams(window.location.search).get('save_amount'));
+          const monthInput = parseInt(document.getElementById("monthInput").value);
+      
+          // Add the monthly savings to the total savings
+          totalSavings += monthInput;
+      
+          // Update the checkpoint list with the updated total savings
+          updateCheckpoints(totalSavings);
+      
+          if (monthInput < 1 / 4 * saveAmount && monthInput >= 0) {
+            topA = 940;
+            leftA = 360;
           }
-      }
-  </script>
-
-  
-    
-</body>
-
-
-</body>
-</html>
+          /* Greece */
+          else if (monthInput >= 1 / 4 * saveAmount && monthInput < 2 / 4 * saveAmount) {
+            topA = 670;
+            leftA = 450;
+          }
+          /* Japan */
+          else if (monthInput >= 2 / 4 * saveAmount && monthInput <= 3 / 4 * saveAmount) {
+            topA = 800;
+            leftA = 850;
+          }
+          /* Australia */
+          else if (monthInput >= 3 / 4 * saveAmount && monthInput <= saveAmount) {
+            topA = 400;
+            leftA = 960;
+          }
+          /* France */
+          else if (monthInput > saveAmount) {
+            topA = 600;
+            leftA = 1150;
+          }
+      
+          document.getElementById("selectedAvatar").style.top = topA + "px";
+          document.getElementById("selectedAvatar").style.left = leftA + "px";
+        }
+      
+        // Function to update the checkpoints based on total savings
+        function updateCheckpoints(totalSavings) {
+          const checkpoints = totalSavings / 4;
+          const checkpointList = document.getElementById("checkpoints");
+      
+          // Remove existing checkpoints
+          checkpointList.innerHTML = "";
+      
+          for (let i = 1; i <= 4; i++) {
+            const checkpoint = document.createElement("li");
+            checkpoint.innerText = "Checkpoint " + i + ": " + getCheckpointName(i) + ": " + checkpoints * i;
+            checkpointList.appendChild(checkpoint);
+          }
+        }
+      </script>
+      
