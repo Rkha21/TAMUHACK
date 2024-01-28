@@ -42,7 +42,7 @@
       </nav>
 
     <h1>Financial Advice</h1>
-    <form method="post" action="/">
+    <form id="financialAdviceForm">
         <label for="name">Name:</label>
         <input type="text" name="name" required><br>
 
@@ -63,5 +63,15 @@
 
         <input type="submit" value="Submit">
     </form>
+    
+    <script>
+        document.getElementById("financialAdviceForm").addEventListener("submit", function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Redirect the user to the desired URL after form submission
+            window.location.href = "result_save.html";
+        });
+    </script>
 </body>
 </html>
