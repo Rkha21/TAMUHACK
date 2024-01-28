@@ -24,13 +24,20 @@ def index():
 
         if wants_to_save:
             advice = calculate_responsibility(salary, save_amount, purchase_amount)
-            return render_template('result_save.html', name=name, email=email, advice=advice)
+            return redirect(url_for('result_save', name=name, email=email, advice=advice))
 
         else:
             advice = "Consider saving for future financial goals."
-            return render_template('result_no_save.html', name=name, email=email, advice=advice)
+            return render_template('result_save.html', name=name, email=email, advice=advice)
 
     return render_template('index.html')
+
+@app.route('/result_save')
+def result_save():
+    name = request.args.get('name')
+    email = request.args.get('email')
+    advice = request.args.get('advice')
+    return render_template('result_save.html', name=name, email=email, advice=advice)
 
 if __name__ == '__main__':
     csrf.init_app(app)
