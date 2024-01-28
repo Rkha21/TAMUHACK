@@ -6,87 +6,114 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 
+    <style>
+        .additional-fields {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Website Name</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="progress.html">Progress</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Account
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Login</a></li>
-                  <li><a class="dropdown-item" href="#">Register</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Sign Out</a></li>
+            <a class="navbar-brand" href="#">Website Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="progress.html">Progress</a>
+                    </li>
                 </ul>
-              </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
+            </div>
         </div>
-      </nav>
+    </nav>
 
     <h1>Financial Advice</h1>
-    <form id="financialAdviceForm">
-        <label for="name">Name:</label>
-        <input type="text" name="name" required><br>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
+    <!-- Login/Sign-up Form -->
+    <form id="loginSignupForm" method="post">
+        <!-- Login Form -->
+        <div id="loginForm">
+            <label for="loginEmail">Email:</label>
+            <input type="email" name="loginEmail" id="loginEmail" required><br>
 
-        <label for="salary">Salary:</label>
-        <input type="number" name="salary" required><br>
+            <label for="loginPassword">Password:</label>
+            <input type="password" name="loginPassword" id="loginPassword" required><br>
 
-        <label for="wants_to_save">Do you want to save?</label>
-        <input type="checkbox" name="wants_to_save"><br>
+            <input type="submit" value="Log In">
+        </div>
 
-        <label for="save_amount">Amount to save:</label>
-        <input type="number" name="save_amount"><br>
+        <p>Don't have an account? <a href="#" onclick="showSignupForm()">Sign Up</a></p>
 
-        <label for="purchase_amount">Amount for a purchase:</label>
-        <input type="number" name="purchase_amount"><br>
+        <!-- Sign-up Form -->
+        <div id="signupForm" style="display: none;">
+            <label for="signupName">Name:</label>
+            <input type="text" name="signupName" id="signupName" required><br>
 
-        <input type="submit" value="Submit">
+            <label for="signupEmail">Email:</label>
+            <input type="email" name="signupEmail" id="signupEmail" required><br>
+
+            <label for="signupPassword">Password:</label>
+            <input type="password" name="signupPassword" id="signupPassword" required><br>
+
+            <label for="signupSalary">Salary:</label>
+            <input type="number" name="signupSalary" id="signupSalary" required><br>
+
+            <label for="wants_to_save">Do you want to save?</label>
+            <input type="checkbox" name="wants_to_save" id="wants_to_save"><br>
+
+            <div class="additional-fields">
+                <label for="save_amount">Amount to save:</label>
+                <input type="number" name="save_amount" id="save_amount"><br>
+
+                <label for="purchase_amount">Amount for a purchase:</label>
+                <input type="number" name="purchase_amount" id="purchase_amount"><br>
+            </div>
+
+            <input type="submit" value="Sign Up">
+            <p>Click <a href="#" onclick="showLoginForm()">here</a> to go back to login.</p>
+        </div>
     </form>
-    
+
     <script>
-      document.getElementById("financialAdviceForm").addEventListener("submit", function(event) {
-          // Prevent the default form submission behavior
-          event.preventDefault();
-  
-          // Get the form data
-          const formData = new FormData(event.target);
-          const saveAmount = formData.get("save_amount");
-  
-          // Redirect to the appropriate page based on whether the saveAmount is provided
-          if (saveAmount) {
-              // Redirect to progress.html if the saveAmount is provided
-              window.location.href = "progress.html?save_amount=" + saveAmount;
-          } else {
-              // Redirect to progress.html if the saveAmount is not provided
-              window.location.href = "progress.html";
-          }
-      });
-  </script>
-  
-  
-  
-  
+        function showSignupForm() {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("signupForm").style.display = "block";
+        }
+
+        function showLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("signupForm").style.display = "none";
+        }
+
+        // Show additional fields if the user wants to save
+        document.getElementById("wants_to_save").addEventListener("change", function() {
+            if (this.checked) {
+                document.querySelector(".additional-fields").style.display = "block";
+            } else {
+                document.querySelector(".additional-fields").style.display = "none";
+            }
+        });
+
+        // Redirect to enter_info.html after login or signup submission
+        function redirectToEnterInfo() {
+            window.location.href = "enter_info.html";
+        }
+
+        // Redirect to result_save.html after entering info submission
+        function redirectToResults() {
+            window.location.href = "result_save.html";
+        }
+
+        // Login/Sign-up Form Submission
+        document.getElementById("loginSignupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            redirectToEnterInfo(); // You can change the redirection logic here
+        });
+    </script>
 </body>
 </html>
