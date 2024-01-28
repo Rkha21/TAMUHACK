@@ -66,13 +66,17 @@
     </form>
     
     <script>
-        document.getElementById("financialAdviceForm").addEventListener("submit", function(event) {
-            // Prevent the default form submission behavior
-            event.preventDefault();
-
-            // Redirect the user to the desired URL after form submission
-            window.location.href = "result_save.html";
-        });
-    </script>
+      document.getElementById("financialAdviceForm").addEventListener("submit", function(event) {
+          // Prevent the default form submission behavior
+          event.preventDefault();
+  
+          // Get the save amount value
+          var saveAmount = document.getElementsByName("save_amount")[0].value;
+  
+          // Redirect the user to the progress page with save_amount as a URL parameter
+          window.location.href = "goalmap.html?save_amount=" + encodeURIComponent(document.getElementsByName('save_amount')[0].value);
+      });
+  </script>
+  
 </body>
 </html>
