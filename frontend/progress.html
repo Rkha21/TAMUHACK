@@ -44,22 +44,29 @@
 
     <h1>Progress</h1>
     <h2>Choose an Avatar</h2>
-      <div class="avatar-container">
-        <div class="avatar-item">
-            <img src="avatar1.png">
-            <button onclick="window.location.href='goalmap.html'">Select</button>
-        </div>
-        <div class="avatar-item">
-            <img src="avatar2.png">
-            <button onclick="window.location.href='goalmap.html'">Select</button>
-        </div>
-        <div class="avatar-item">
-            <img src="avatar3.png">
-            <button onclick="window.location.href='goalmap.html'">Select</button>
-        </div>
-    </div>
-
-
-    
+    <div class="avatar-item">
+      <img src="avatar1.png">
+      <button onclick="redirectToGoalMap('avatar1')">Select</button>
+  </div>
+  <div class="avatar-item">
+      <img src="avatar2.png">
+      <button onclick="redirectToGoalMap('avatar2')">Select</button>
+  </div>
+  <div class="avatar-item">
+      <img src="avatar3.png">
+      <button onclick="redirectToGoalMap('avatar3')">Select</button>
+  </div>
+  
+  <script>
+      function redirectToGoalMap(avatar) {
+          // Retrieve the save amount from the URL
+          const urlParams = new URLSearchParams(window.location.search);
+          const saveAmount = urlParams.get('save_amount');
+  
+          // Redirect to goalmap.html with save_amount and avatar parameters
+          window.location.href = "goalmap.html?save_amount=" + saveAmount + "&avatar=" + avatar;
+      }
+  </script>
+  
 </body>
 </html>

@@ -66,13 +66,27 @@
     </form>
     
     <script>
-        document.getElementById("financialAdviceForm").addEventListener("submit", function(event) {
-            // Prevent the default form submission behavior
-            event.preventDefault();
-
-            // Redirect the user to the desired URL after form submission
-            window.location.href = "result_save.html";
-        });
-    </script>
+      document.getElementById("financialAdviceForm").addEventListener("submit", function(event) {
+          // Prevent the default form submission behavior
+          event.preventDefault();
+  
+          // Get the form data
+          const formData = new FormData(event.target);
+          const saveAmount = formData.get("save_amount");
+  
+          // Redirect to the appropriate page based on whether the saveAmount is provided
+          if (saveAmount) {
+              // Redirect to progress.html if the saveAmount is provided
+              window.location.href = "progress.html?save_amount=" + saveAmount;
+          } else {
+              // Redirect to progress.html if the saveAmount is not provided
+              window.location.href = "progress.html";
+          }
+      });
+  </script>
+  
+  
+  
+  
 </body>
 </html>
