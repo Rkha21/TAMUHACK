@@ -16,8 +16,8 @@
         position: absolute;
         width: 70px; /* Resize the avatar to 70px */
         height: auto;
-        top: topA;
-        left: leftA; /* Position the avatar at (0,0) relative to the roadmap */
+        top: 800px;
+        left: 100px; /* Position the avatar at (0,0) relative to the roadmap */
     }
 
     #checkpoints {
@@ -124,37 +124,35 @@
       let topA = 800;
       let leftA = 100;
 
-      function increment(save_amount) {
-        const saveAmount = parseInt(new URLSearchParams(window.location.search).get('save_amount'));
-        const monthInput = parseInt(document.getElementById("monthInput").value);
+    function increment() {
+    const saveAmount = parseInt(new URLSearchParams(window.location.search).get('save_amount'));
+    const monthInput = parseInt(document.getElementById("monthInput").value);
 
-        if (save_amount < 1/4*saveamount && saveamount >= 0 )
-        {
-          topA= 800;
-          leftA= 100;
-        }
-        else if (save_amount >= 1/4*saveamount && save_amount< 2/4*saveamount)
-        {
-          topA= 500;
-          leftA= 100;
-        }
-        else if (save_amount >= 2/4*saveamount && save_amount < 3/4*saveamount)
-        {
-          topA= 800;
-          leftA= 300;
-        }
-        else if (save_amount >= 3/4*saveamount && save_amount < saveamount)
-        {
-          topA= 800;
-          leftA= 100;
-        }
-        document.getElementById("selectedAvatar").style.top = topA + "px";
-        document.getElementById("selectedAvatar").style.left = leftA + "px";
-      }
+    if (monthInput < 1/4*saveAmount && monthInput >= 0 ) {
+        topA = 800;
+        leftA = 100;
+    }
+    else if (monthInput >= 1/4*saveAmount && monthInput < 2/4*saveAmount) {
+        topA = 550;
+        leftA = 170;
+    }
+    else if (monthInput >= 2/4*saveAmount && monthInput <= 3/4*saveAmount) {
+        topA = 280;
+        leftA = 700;
+    }
+    else if (monthInput >= 3/4*saveAmount && monthInput <= saveAmount) {
+        topA = 450;
+        leftA = 900;
+    }
+
+    document.getElementById("selectedAvatar").style.top = topA + "px";
+    document.getElementById("selectedAvatar").style.left = leftA + "px";
+}
+
     </script>
 
 <form>
-  <label for="monthInput">Enter how much you saved in January:</label>
+  <label for="monthInput">Enter how much you saved this month:</label>
   <input type="number" id="monthInput" required>
   <button type="button" onclick="increment()">Submit</button>
 </form>
