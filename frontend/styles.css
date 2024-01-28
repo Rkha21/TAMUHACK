@@ -114,3 +114,23 @@ body {
     padding-right: 5%;
     background-color: #fffffff2;
 }
+
+#titleblock{
+    background-color: #fffffff2;
+    padding-bottom: 2%;
+    text-align:center;
+}
+
+.centerBlock{
+    margin-top: 20px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #fffffff2;
+    text-align: center;
+}
+
+#caption{
+    text-align: center;
+}
