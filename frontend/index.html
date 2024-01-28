@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Financial Advice</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        .additional-fields {
-            display: none;
-        }
-    </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -34,71 +30,49 @@
 
     <h1>Financial Advice</h1>
 
-    <!-- Login/Sign-up Form -->
-    <form id="loginSignupForm" method="post">
-        <!-- Login Form -->
-        <div id="loginForm">
-            <label for="loginEmail">Email:</label>
-            <input type="email" name="loginEmail" id="loginEmail" required><br>
+    <!-- Login Form -->
+    <form id="loginForm" method="post">
+        <label for="loginEmail">Email:</label>
+        <input type="email" name="loginEmail" id="loginEmail" required><br>
 
-            <label for="loginPassword">Password:</label>
-            <input type="password" name="loginPassword" id="loginPassword" required><br>
+        <label for="loginPassword">Password:</label>
+        <input type="password" name="loginPassword" id="loginPassword" required><br>
 
-            <input type="submit" value="Log In">
-        </div>
+        <input type="submit" value="Log In">
+    </form>
 
-        <p>Don't have an account? <a href="#" onclick="showSignupForm()">Sign Up</a></p>
+    <p id="signupLink">Don't have an account? <a href="#" onclick="showSignupForm()">Sign Up</a></p>
 
-        <!-- Sign-up Form -->
-        <div id="signupForm" style="display: none;">
-            <label for="signupName">Name:</label>
-            <input type="text" name="signupName" id="signupName" required><br>
+    <!-- Sign-up Form -->
+    <form id="signupForm" method="post" style="display: none;">
+        <label for="signupName">Name:</label>
+        <input type="text" name="signupName" id="signupName" required><br>
 
-            <label for="signupEmail">Email:</label>
-            <input type="email" name="signupEmail" id="signupEmail" required><br>
+        <label for="signupEmail">Email:</label>
+        <input type="email" name="signupEmail" id="signupEmail" required><br>
 
-            <label for="signupPassword">Password:</label>
-            <input type="password" name="signupPassword" id="signupPassword" required><br>
+        <label for="signupPassword">Password:</label>
+        <input type="password" name="signupPassword" id="signupPassword" required><br>
 
-            <label for="signupSalary">Salary:</label>
-            <input type="number" name="signupSalary" id="signupSalary" required><br>
-
-            <label for="wants_to_save">Do you want to save?</label>
-            <input type="checkbox" name="wants_to_save" id="wants_to_save"><br>
-
-            <div class="additional-fields">
-                <label for="save_amount">Amount to save:</label>
-                <input type="number" name="save_amount" id="save_amount"><br>
-
-                <label for="purchase_amount">Amount for a purchase:</label>
-                <input type="number" name="purchase_amount" id="purchase_amount"><br>
-            </div>
-
-            <input type="submit" value="Sign Up">
-            <p>Click <a href="#" onclick="showLoginForm()">here</a> to go back to login.</p>
-        </div>
+        <input type="submit" value="Sign Up">
+        <p>Click <a href="#" onclick="showLoginForm()">here</a> to go back to login.</p>
     </form>
 
     <script>
         function showSignupForm() {
             document.getElementById("loginForm").style.display = "none";
             document.getElementById("signupForm").style.display = "block";
+            document.getElementById("signupLink").style.display = "none";
         }
 
         function showLoginForm() {
             document.getElementById("loginForm").style.display = "block";
             document.getElementById("signupForm").style.display = "none";
+            document.getElementById("signupLink").style.display = "block";
         }
+    </script>
 
-        // Show additional fields if the user wants to save
-        document.getElementById("wants_to_save").addEventListener("change", function() {
-            if (this.checked) {
-                document.querySelector(".additional-fields").style.display = "block";
-            } else {
-                document.querySelector(".additional-fields").style.display = "none";
-            }
-        });
-
+    <script>
         // Redirect to enter_info.html after login or signup submission
         function redirectToEnterInfo() {
             window.location.href = "enter_info.html";
@@ -109,11 +83,18 @@
             window.location.href = "result_save.html";
         }
 
-        // Login/Sign-up Form Submission
-        document.getElementById("loginSignupForm").addEventListener("submit", function(event) {
+        // Login Form Submission
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            redirectToEnterInfo(); // You can change the redirection logic here
+            redirectToEnterInfo();
+        });
+
+        // Sign-up Form Submission
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            redirectToEnterInfo();
         });
     </script>
 </body>
+
 </html>
