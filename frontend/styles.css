@@ -42,3 +42,33 @@ body {
     padding-right: 5%;
     background-color: #fffffff2;
 }
+
+#loginSignupForm{
+    margin-top: 20px;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #fffffff2;
+}
+
+#loginEmail{
+    margin-bottom: 2%;
+}
+#loginPassword{
+    margin-bottom: 2%;
+}
+
+#signUpAcc{
+    margin-top: 2%;
+}
+
+#indexTitle{
+    margin-top: 20px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #fffffff2;
+    text-align: center;
+}
