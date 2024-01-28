@@ -16,7 +16,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="home.html">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Progress</a>
@@ -26,10 +26,10 @@
                   Account
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Login</a></li>
-                  <li><a class="dropdown-item" href="#">Register</a></li>
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
               </li>
             </ul>
@@ -41,9 +41,27 @@
         </div>
       </nav>
 
-      <div class="container">
-        <h1> Website Name</h1>
-      </div>
+    <h1>Financial Advice</h1>
+    <form method="post" action="/">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br>
 
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label for="salary">Salary:</label>
+        <input type="number" name="salary" required><br>
+
+        <label for="wants_to_save">Do you want to save?</label>
+        <input type="checkbox" name="wants_to_save"><br>
+
+        <label for="save_amount">Amount to save:</label>
+        <input type="number" name="save_amount"><br>
+
+        <label for="purchase_amount">Amount for a purchase:</label>
+        <input type="number" name="purchase_amount"><br>
+
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

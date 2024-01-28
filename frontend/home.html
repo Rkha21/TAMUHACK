@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +16,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Progress</a>
@@ -40,38 +39,11 @@
             </form>
           </div>
         </div>
-    </nav>
+      </nav>
 
-    <h1>Financial Advice</h1>
-    <form method="post" action="/">
-        <label for="name">Name:</label>
-        <input type="text" name="name" required><br>
+      <div class="homeTitle">
+        <h1 id = "homeName"> Website Name</h1>
+      </div>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
-
-        <label for="salary">Salary:</label>
-        <input type="number" name="salary" required><br>
-
-        <label for="wants_to_save">Do you want to save?</label>
-        <input type="checkbox" name="wants_to_save" id="wants_to_save"><br>
-
-        <div id="save_fields" style="display: none;">
-            <label for="save_amount">Amount to save:</label>
-            <input type="number" name="save_amount"><br>
-        </div>
-
-        <label for="purchase_amount">Amount for a purchase:</label>
-        <input type="number" name="purchase_amount"><br>
-
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <input type="submit" value="Submit">
-    </form>
-
-    <script>
-        document.getElementById('wants_to_save').addEventListener('change', function() {
-            document.getElementById('save_fields').style.display = this.checked ? 'block' : 'none';
-        });
-    </script>
 </body>
 </html>
