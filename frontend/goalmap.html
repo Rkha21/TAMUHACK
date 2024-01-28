@@ -16,26 +16,45 @@
         left: 100px; /* Position the avatar at (0,0) relative to the roadmap */
     }
 
-</style>
+    #checkpoints {
+      position: absolute;
+      top: 300px;
+      right: 300px;
+    }
 
 </style>
 
 <script>
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const goalAmount = urlParams.get('goal_amount');
-        const avatar = urlParams.get('avatar'); // Retrieve the selected avatar
+  window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const saveAmount = parseInt(urlParams.get('save_amount')); // Retrieve save_amount instead of goal_amount
+      const avatar = urlParams.get('avatar'); // Retrieve the selected avatar
 
-        // if (!goalAmount || !avatar) {
-        //     window.location.href = "index.html"; // Redirect to homepage if goal_amount or avatar parameter doesn't exist
-        // } else {
-        //     // Display selected avatar
-        document.getElementById("selectedAvatar").src = avatar + ".png";
-        // }
+      // Display selected avatar
+      document.getElementById("selectedAvatar").src = avatar + ".png";
 
-        // Display goal amount
-        document.getElementById("goalAmount").innerText = "Goal Amount: $" + goalAmount;
-    };
+      // Display goal amount
+      document.getElementById("goalAmount").innerText = "Goal Amount: $" + saveAmount;
+
+      // Calculate and display checkpoints
+      const checkpoints = saveAmount / 4;
+      const checkpointList = document.getElementById("checkpoints");
+      for (let i = 1; i <= 4; i++) {
+          const checkpoint = document.createElement("li");
+          checkpoint.innerText = "Checkpoint " + i + ": " + getCheckpointName(i) + ": " + checkpoints * i;
+          checkpointList.appendChild(checkpoint);
+      }
+    }
+
+
+   // Function to get the name of the checkpoint based on its number
+   function getCheckpointName(checkpointNumber) {
+            // Define your checkpoint names here, e.g., Greece, Japan, Australia, France
+            const checkpointNames = ["Greece", "Japan", "Australia", "France"];
+            return checkpointNames[checkpointNumber - 1]; // Adjust index since arrays are zero-based
+        }
+
+
 </script>
 
 </head>
@@ -92,26 +111,34 @@
         <p>You've reached Island 1!</p>
     </div>
 
-    <!-- Display salary -->
-    <h2 id="salary"></h2>
+    <!-- Display goal amount -->
+    <h2 id="goalAmount"></h2>
+
+    <!-- Display checkpoints -->
+    <ul id="checkpoints"></ul>
 
     <script>
-        // Function to move the avatar and trigger events
-        function avatarMove(islandNumber) {
-            // Move the avatar to the specified island/city
+      // Function to move the avatar and trigger events
+      function avatarMove(islandNumber) {
+          // Move the avatar to the specified island/city
 
-            // Check if the avatar reached the final goal amount
-            if (islandNumber === 4) {
-                // Show confetti animation
-                const confettiSettings = { target: 'confetti' };
-                const confetti = new ConfettiGenerator(confettiSettings);
-                confetti.render();
+          // Check if the avatar reached the final goal amount
+          if (islandNumber === 4) {
+              // Show confetti animation
+              const confettiSettings = { target: 'confetti' };
+              const confetti = new ConfettiGenerator(confettiSettings);
+              confetti.render();
 
-                // Display congratulations message
-                document.getElementById("congratulations").style.display = "block";
-            }
-        }
-    </script>
+              // Display congratulations message
+              document.getElementById("congratulations").style.display = "block";
+          }
+      }
+  </script>
+
+  
+    
+</body>
+
+
 </body>
 </html>
-
