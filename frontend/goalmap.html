@@ -42,21 +42,22 @@
         </div>
       </nav>
 
-    <h1>Goal Map</h1>
-    <div id="saveAmountDisplay">
-        <!-- Display the save amount here -->
-    </div>
+      <h1>Goal Map</h1>
+        <p id="save_amount">Save Amount:</p>
+
     
-    <script>
+
+      <script>
         window.onload = function() {
             // Retrieve the save amount value from the URL parameters
             const urlParams = new URLSearchParams(window.location.search);
             const saveAmount = urlParams.get('save_amount');
-
+    
             // Display the save amount in the designated element
-            document.getElementById('saveAmountDisplay').innerHTML = "Save Amount: $" + saveAmount;
+            document.getElementById('save_amount').innerHTML = "Save Amount: $" + saveAmount;
         };
     </script>
+    
 
 
 </body>
