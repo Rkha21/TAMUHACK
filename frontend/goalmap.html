@@ -16,8 +16,8 @@
         position: absolute;
         width: 70px; /* Resize the avatar to 70px */
         height: auto;
-        top: 800px;
-        left: 100px; /* Position the avatar at (0,0) relative to the roadmap */
+        top: 940px;
+        left: 360px; /* Position the avatar at (0,0) relative to the roadmap */
     }
 
     #checkpoints {
@@ -128,38 +128,42 @@
     <!-- function that increments-->
 
     <script>
-      let topA = 800;
-      let leftA = 100;
+      let topA = 940;
+      let leftA = 360;
 
       function increment() {
     const saveAmount = parseInt(new URLSearchParams(window.location.search).get('save_amount'));
     const monthInput = parseInt(document.getElementById("monthInput").value);
+    let topA, leftA;
 
     if (monthInput < 1/4 * saveAmount && monthInput >= 0) {
-        topA = 800;
-        leftA = 100;
+        topA = 940;
+        leftA = 360;
     }
+    /* Greece */
     else if (monthInput >= 1/4 * saveAmount && monthInput < 2/4 * saveAmount) {
-        topA = 550;
-        leftA = 170;
+        topA = 670;
+        leftA = 450;
     }
+    /* Japan */
     else if (monthInput >= 2/4 * saveAmount && monthInput <= 3/4 * saveAmount) {
-        topA = 650;
-        leftA = 570;
+        topA = 800;
+        leftA = 850;
     }
+    /* Australia */
     else if (monthInput >= 3/4 * saveAmount && monthInput <= saveAmount) {
-        topA = 290;
-        leftA = 700;
+        topA = 400;
+        leftA = 960;
     }
-    else {
-        topA = 450;
-        leftA = 900;
+    /* France */
+    else if (monthInput > saveAmount) {
+        topA = 600;
+        leftA = 1150;
     }
 
     document.getElementById("selectedAvatar").style.top = topA + "px";
     document.getElementById("selectedAvatar").style.left = leftA + "px";
 }
-
 
     </script>
 
