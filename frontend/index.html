@@ -74,8 +74,9 @@
                 <input type="number" name="purchase_amount" id="purchase_amount"><br>
             </div>
 
-            <input type="submit" value="Sign Up">
+            <input type="submit" value="Sign Up" onClick="redirectToEnterInfo()">
             <p>Click <a href="#" onclick="showLoginForm()">here</a> to go back to login.</p>
+
         </div>
     </form>
 
@@ -101,8 +102,10 @@
 
         // Redirect to enter_info.html after login or signup submission
         function redirectToEnterInfo() {
-            window.location.href = "enter_info.html";
+        const saveAmount = document.getElementById('save_amount').value; // Get the save amount from the input field
+        window.location.href = "progress.html?save_amount=" + saveAmount; // Pass the save amount to progress.html
         }
+
 
         // Redirect to result_save.html after entering info submission
         function redirectToResults() {

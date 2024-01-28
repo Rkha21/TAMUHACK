@@ -1,64 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Progress</title>
+    <title>Goal Map</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+
+   <style>
+    /* CSS for positioning and resizing the selected avatar */
+    #selectedAvatar {
+        position: absolute;
+        width: 70px; /* Resize the avatar to 70px */
+        height: auto;
+        top: 800px;
+        left: 100px; /* Position the avatar at (0,0) relative to the roadmap */
+    }
+
+</style>
+
+</style>
+
+<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const goalAmount = urlParams.get('goal_amount');
+        const avatar = urlParams.get('avatar'); // Retrieve the selected avatar
+
+        // if (!goalAmount || !avatar) {
+        //     window.location.href = "index.html"; // Redirect to homepage if goal_amount or avatar parameter doesn't exist
+        // } else {
+        //     // Display selected avatar
+        document.getElementById("selectedAvatar").src = avatar + ".png";
+        // }
+
+        // Display goal amount
+        document.getElementById("goalAmount").innerText = "Goal Amount: $" + goalAmount;
+    };
+</script>
 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Website Name</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="progress.html">Progress</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Account
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Login</a></li>
-                  <li><a class="dropdown-item" href="#">Register</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Sign Out</a></li>
+            <a class="navbar-brand" href="#">Website Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="progress.html">Progress</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Login</a></li>
+                            <li><a class="dropdown-item" href="#">Register</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                        </ul>
+                    </li>
                 </ul>
-              </li>
-            </ul>
-            <!-- <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> -->
-          </div>
+            </div>
         </div>
-      </nav>
+    </nav>
 
-      <h1>Goal Map</h1>
-        <p id="save_amount">Save Amount:</p>
-
+    <h1>Goal Map</h1>
     
+    <!-- Display selected avatar -->
+    <img id="selectedAvatar" src="" alt="Selected Avatar">
 
-      <script>
-        window.onload = function() {
-            // Retrieve the save amount value from the URL parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const saveAmount = urlParams.get('save_amount');
-    
-            // Display the save amount in the designated element
-            document.getElementById('save_amount').innerHTML = "Save Amount: $" + saveAmount;
-        };
+    <!-- Display roadmap with image map -->
+    <div id="roadmapContainer">
+        <img id="roadmap" src="roadmap.png" usemap="#islandsMap" alt="Roadmap">
+    </div>
+
+    <!-- Define clickable areas for islands/cities -->
+    <map name="islandsMap">
+        <area shape="circle" coords="x1,y1,radius" alt="Island 1" onclick="avatarMove(1)">
+        <!-- Define other areas for other islands/cities -->
+    </map>
+
+    <!-- Congratulations message -->
+    <div id="congratulations" style="display: none;">
+        <h2>Congratulations!</h2>
+        <p>You've reached Island 1!</p>
+    </div>
+
+    <!-- Display salary -->
+    <h2 id="salary"></h2>
+
+    <script>
+        // Function to move the avatar and trigger events
+        function avatarMove(islandNumber) {
+            // Move the avatar to the specified island/city
+
+            // Check if the avatar reached the final goal amount
+            if (islandNumber === 4) {
+                // Show confetti animation
+                const confettiSettings = { target: 'confetti' };
+                const confetti = new ConfettiGenerator(confettiSettings);
+                confetti.render();
+
+                // Display congratulations message
+                document.getElementById("congratulations").style.display = "block";
+            }
+        }
     </script>
-    
-
-
 </body>
 </html>
+
